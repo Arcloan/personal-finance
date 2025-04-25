@@ -1,26 +1,36 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: PublicSans;
+  src: url("/assets/fonts/PublicSans-VariableFont_wght.ttf");
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@theme {
+  --color-Beige500: #98908B;
+  --color-Beige100: #F8F4F0;
+  --color-Grey900: #201F24;
+  --color-Grey500: #696868;
+  --color-Grey300: #B3B3B3;
+  --color-Grey100: #F2F2F2;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+  --color-Green: #277C78;
+  --color-Yellow: #F2CDAC;
+  --color-Cyan: #82C9D7;
+  --color-Navy: #626070;
+  --color-Red: #C94736;
+  --color-Purple: #826CB0;
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  --color-LighterPurple: #AF81BA;
+  --color-Turquoise: #597C7C;
+  --color-Brown: #93674F;
+  --color-Magenta: #934F6F;
+  --color-Blue: #3F82B2;
+  --color-NavyGrey: #97A0AC;
+  --color-ArmyGray: #7F9161;
+  --color-Gold: #CAB361;
+  --color-Orange: #BE6C49;
+
+  --color-White: #FFFFFF;
+
+  --font-roboto: "PublicSans", sans-serif; 
 }
