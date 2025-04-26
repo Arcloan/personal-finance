@@ -31,7 +31,7 @@ export default function BudgetsChart() {
               data={budgets}
               dataKey="maximum"
               nameKey="category"
-              innerRadius={90}
+              innerRadius={70}
               outerRadius={110}
               startAngle={450}
               endAngle={90}
