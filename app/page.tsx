@@ -5,6 +5,7 @@ import BalanceCard from '@/components/BalanceCard';
 import TransactionsList from '@/components/TransactionsList';
 import PotsSection from '@/components/PotsSection';
 import BudgetsChart from '@/components/BudgetsChart';
+import RecurringSection from '@/components/RecurringSection'
 import data from '@/data.json';
 import DashboardProvider from '@/context/DashboardProvider';
 
@@ -21,7 +22,7 @@ export default function Home() {
           <BalanceCard label="Expenses" amount={data.balance.expenses} />
         </div>
 
-        <div className='2xl:grid max-2xl:flex max-2xl:flex-col max-2xl:gap-y-6 2xl:grid-cols-subgrid 2xl:col-span-5 2xl:gap-y-6 grid-rows-[218px_192px_327px]'>
+        <div className='2xl:grid max-2xl:flex max-2xl:flex-col max-2xl:gap-y-6 2xl:grid-cols-subgrid 2xl:col-span-5 2xl:gap-y-6 grid-rows-[218px_168px_327px]'>
           {/* Pot Section */}
           <PotsSection />
 
@@ -30,6 +31,9 @@ export default function Home() {
 
           {/* Budgets Chart */}
           <BudgetsChart />
+
+          {/*Recurring Section */}
+          <RecurringSection />
         </div>
       </div>
     </DashboardProvider>

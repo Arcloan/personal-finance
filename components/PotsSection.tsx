@@ -5,7 +5,6 @@ import imagePot from "@/assets/images/icon-pot.svg"
 
 export default function PotsSection() {
   const { pots } = usePots();
-  console.log(pots);
 
   return (
     <div className="bg-white p-4 rounded-lg 2xl:col-span-3 2xl:order-1 2xl:py-4 py-8 2xl:row-end-2 row-start-1">

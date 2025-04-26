@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 import { TransactionsContext } from './TransactionsContext';
 import { PotsContext } from './PotsContext';
 import { BudgetsContext } from './BudgetsContext';
-import data from '@/data.json'; // <-- Supponiamo sempre che i dati siano lì
+import data from '@/data.json';
 
 interface DashboardProviderProps {
   children: ReactNode;
