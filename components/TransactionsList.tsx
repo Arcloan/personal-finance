@@ -1,9 +1,9 @@
 import React from 'react';
-import { useTransactions } from '@/context/TransactionsContext';
+import { useTransactionsState } from '@/context/transactions/TransactionsStateContext';
 import clsx from 'clsx';
 
 export default function TransactionsList() {
-  const { transactions } = useTransactions();
+  const transactions = useTransactionsState();
 
   return (
     <div className="bg-white p-4 rounded-lg 2xl:col-span-3 2xl:order-3 2xl:row-start-2 2xl:row-end-4 2xl:py-10 2xl:px-8">

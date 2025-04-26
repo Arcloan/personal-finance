@@ -1,10 +1,10 @@
 import React from 'react';
-import { usePots } from '@/context/PotsContext';
+import { usePotsState } from '@/context/pots/PotsStateContext';
 import Image from 'next/image';
 import imagePot from "@/assets/images/icon-pot.svg"
 
 export default function PotsSection() {
-  const { pots } = usePots();
+  const pots = usePotsState();
 
   return (
     <div className="bg-white p-4 rounded-lg 2xl:col-span-3 2xl:order-1 2xl:py-4 py-8 2xl:row-end-2 row-start-1">

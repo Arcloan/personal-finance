@@ -1,12 +1,12 @@
 // components/BudgetsChart.tsx
 import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
-import { useBudgets } from '@/context/BudgetsContext';
-import { useTransactions } from '@/context/TransactionsContext';
+import { useBudgetsState } from '@/context/budgets/BudgetsStateContext';
+import { useTransactionsState } from '@/context/transactions/TransactionsStateContext';
 
 export default function BudgetsChart() {
-  const { budgets } = useBudgets();
-  const { transactions } = useTransactions();
+  const budgets = useBudgetsState();
+  const transactions = useTransactionsState();
   const categories = budgets.map((budget) => budget.category);
 
   return (

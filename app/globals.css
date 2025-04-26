@@ -34,3 +34,7 @@
 
   --font-roboto: "PublicSans", sans-serif; 
 }
+
+@utility filter-green {
+  filter: invert(40%) sepia(29%) saturate(798%) hue-rotate(128deg) brightness(96%) contrast(96%);
+}
