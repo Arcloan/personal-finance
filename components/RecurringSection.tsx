@@ -4,6 +4,7 @@ import { calculateDueSoon } from '@/libraries/recurringHelpers';
 import { calculatePaid } from '@/libraries/recurringHelpers';
 import { calculateTotalUpcoming } from '@/libraries/recurringHelpers';
 import { checkIfInside } from '@/libraries/recurringHelpers';
+import Link from 'next/link';
 
 export default function RecurringSection() {
   const transactions = useTransactionsState();
@@ -18,7 +19,7 @@ export default function RecurringSection() {
     <div className="bg-white p-4 rounded-lg xl:col-start-2 xl:order-3 xl:row-start-3 xl:row-end-4 xl:py-6 xl:px-8">
       <div className="flex justify-between mb-4">
         <p className="font-bold text-xl">Recurring Bills</p>
-        <button className="text-sm text-grey-500">View All →</button>
+        <Link href={"/recurring-bills"} className="text-sm text-grey-500">View All →</Link>
       </div>
       <div className='grid gap-4'>
         <div className='flex justify-between px-4 py-5 rounded-xl bg-Grey100 border-l-6 border-Green'>

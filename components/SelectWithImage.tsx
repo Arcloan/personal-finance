@@ -34,7 +34,7 @@ export default function SelectWithImage({imageUrl, updateParam, type, options} :
   }, []);
 
   return (
-    <div className="relative flex flex-col items-center space-y-4" ref={menuRef}>
+    <div className="md:hidden relative flex flex-col items-center space-y-4" ref={menuRef}>
       <img
         src={imageUrl}
         alt="Apri Selezione"

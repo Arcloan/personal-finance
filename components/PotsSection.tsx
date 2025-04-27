@@ -2,6 +2,7 @@ import React from 'react';
 import { usePotsState } from '@/context/pots/PotsStateContext';
 import Image from 'next/image';
 import imagePot from "@/assets/images/icon-pot.svg"
+import Link from 'next/link';
 
 export default function PotsSection() {
   const pots = usePotsState();
@@ -10,7 +11,7 @@ export default function PotsSection() {
     <div className="bg-white p-4 rounded-lg xl:col-start-1 xl:order-1 xl:py-4 py-8 xl:row-end-2 row-start-1">
       <div className="flex justify-between mb-4">
         <p className="font-semibold text-xl">Pots</p>
-        <button className="text-sm text-Grey500">See Details →</button>
+        <Link href={"/pots"} className="text-sm text-Grey500">See Details →</Link>
       </div>
       <div className="grid md:grid-cols-2 gap-4">
         <div className='flex p-6 pl-10 gap-8 items-center bg-Grey100 rounded-xl'>

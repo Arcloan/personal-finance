@@ -9,7 +9,7 @@ import { calculateTotalUpcoming } from '@/libraries/recurringHelpers';
 import { checkIfInside } from '@/libraries/recurringHelpers';
 import { isPaid } from '@/libraries/recurringHelpers';
 import { isDueSoon } from '@/libraries/recurringHelpers';
-// import SelectWithImage from '@/components/SelectWithImage';
+import SelectWithImage from '@/components/SelectWithImage';
 
 const sortOptions = [
   { value: 'newest', label: 'Newest' },
@@ -59,9 +59,9 @@ export default function RecurringBillsPage() {
       case 'ztoa':
         return filtered.sort((a, b) => b.name.localeCompare(a.name));
       case 'highest':
-        return filtered.sort((a, b) => b.amount - a.amount);
+        return filtered.sort((a, b) => Math.abs(b.amount) - Math.abs(a.amount));
       case 'lowest':
-        return filtered.sort((a, b) => a.amount - b.amount);
+        return filtered.sort((a, b) => Math.abs(a.amount) - Math.abs(b.amount));
       default:
         return filtered;
     }
@@ -111,7 +111,7 @@ export default function RecurringBillsPage() {
         {/* Right Table Section */}
         <div className="flex-1 bg-white rounded-lg shadow overflow-x-auto p-4">
           {/* Controls */}
-          <div className="flex flex-col md:flex-row gap-4 mb-4">
+          <div className="flex gap-4 max-md:gap-8 mb-4">
             <input
               type="text"
               placeholder="Search bills"
@@ -119,7 +119,15 @@ export default function RecurringBillsPage() {
               onChange={(e) => updateParam('search', e.target.value)}
               className="border rounded-lg px-4 py-2 w-full md:w-1/2"
             />
-            <div className="ml-auto flex gap-2 items-center">
+            <SelectWithImage imageUrl="/assets/images/icon-sort-mobile.svg" type="sort" options={[
+                        { value: 'newest', label: 'Newest' },
+                        { value: 'oldest', label: 'Oldest' },
+                        { value: 'atoz', label: 'A to Z' },
+                        { value: 'ztoa', label: 'Z to A' },
+                        { value: 'highest', label: 'Highest' },
+                        { value: 'lowest', label: 'Lowest' },
+                        ]} updateParam={updateParam}></SelectWithImage>
+            <div className="ml-auto flex gap-2 items-center max-md:hidden">
               <p className="text-Grey500">Sort by</p>
               <select
                 id="sort"
@@ -138,7 +146,7 @@ export default function RecurringBillsPage() {
           <div>
             <table className="min-w-full">
               <thead className="text-left text-sm text-Grey500">
-                <tr>
+                <tr className='max-md:hidden'>
                   <th className="p-4">Bill Title</th>
                   <th className="p-4">Due Date</th>
                   <th className="p-4">Amount</th>
@@ -146,19 +154,20 @@ export default function RecurringBillsPage() {
               </thead>
               <tbody>
                 {filteredBills.map((bill, idx) => (
-                  <tr key={idx} className="border-t border-Grey100">
-                    <td className="p-4 flex items-center gap-3">
+                  <tr key={idx} className="border-t border-Grey100 max-md:flex max-md:flex-col">
+                    <td className="p-4 flex items-center gap-3 max-md:font-semibold">
                       <img src={bill.avatar?.slice(1)} alt="Image of the bill entity" className='size-10 rounded-full' />
                       {bill.name}
                     </td>
-                    <td className={`p-4 ${isPaid(bill) ? 'text-Green' : "text-Grey500"}`}>
+                    <td className={`p-4 max-md:flex max-md:justify-between ${isPaid(bill) ? 'text-Green' : "text-Grey500"}`}>
                         <div className='flex gap-2 items-center'>
-                        <p>Monthly - {new Date(bill.date).getDate()}th</p>
-                        {isPaid(bill) ? <img src="/assets/images/icon-bill-paid.svg" alt="Paid bill icon" /> : ""}
-                        {isDueSoon(bill) ? <img  src="/assets/images/icon-bill-due.svg" alt="Due Soon bill icon" /> : ""}
+                          <p>Monthly - {new Date(bill.date).getDate()}th</p>
+                          {isPaid(bill) ? <img src="/assets/images/icon-bill-paid.svg" alt="Paid bill icon" /> : ""}
+                          {isDueSoon(bill) ? <img  src="/assets/images/icon-bill-due.svg" alt="Due Soon bill icon" /> : ""}
                         </div>
+                        <p className='md:hidden text-black font-semibold'>${Math.abs(bill.amount).toFixed(2)}</p>
                     </td>
-                    <td className={`p-4 font-semibold ${isDueSoon(bill) ? "text-Red": ""}`}>${Math.abs(bill.amount).toFixed(2)}</td>
+                    <td className={`p-4 font-semibold max-md:hidden ${isDueSoon(bill) ? "text-Red": ""}`}>${Math.abs(bill.amount).toFixed(2)}</td>
                   </tr>
                 ))}
               </tbody>

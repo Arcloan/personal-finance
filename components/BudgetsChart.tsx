@@ -3,6 +3,7 @@ import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import { useBudgetsState } from '@/context/budgets/BudgetsStateContext';
 import { useTransactionsState } from '@/context/transactions/TransactionsStateContext';
+import Link from 'next/link';
 
 export default function BudgetsChart() {
   const budgets = useBudgetsState();
@@ -13,7 +14,7 @@ export default function BudgetsChart() {
     <div className="bg-white p-4 px-8 rounded-lg xl:col-start-2 xl:order-2 xl:row-start-1 xl:row-end-3">
       <div className="flex justify-between mb-4 mt-8">
         <p className="font-semibold text-xl">Budgets</p>
-        <button className="text-sm text-grey-500">See Details →</button>
+        <Link href={"/budgets"} className="text-sm text-grey-500">See Details →</Link>
       </div>
       <div className="w-full h-64 max-sm:h-92 flex mt-4 items-center max-sm:flex-col">
         {/*// @ts-expect-error It seems the responsive container want only one child but it does work perfect with two child*/}

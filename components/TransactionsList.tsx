@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTransactionsState } from '@/context/transactions/TransactionsStateContext';
 import clsx from 'clsx';
+import Link from 'next/link';
 
 export default function TransactionsList() {
   const transactions = useTransactionsState();
@@ -9,7 +10,7 @@ export default function TransactionsList() {
     <div className="bg-white p-4 rounded-lg xl:col-start-1 xl:order-3 xl:row-start-2 xl:row-end-4 xl:py-10 xl:px-8">
       <div className="flex justify-between mb-4">
         <p className="font-semibold text-xl">Transactions</p>
-        <button className="text-sm text-grey-500">View All →</button>
+        <Link href={"/transactions"} className="text-sm text-grey-500">View All →</Link>
       </div>
       <ul className="divide-y divide-Grey100 text-sm flex flex-col gap-4">
         {transactions.slice(0, 5).map((t, idx) => (
