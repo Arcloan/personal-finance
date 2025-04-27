@@ -10,9 +10,9 @@ export default function BudgetsChart() {
   const categories = budgets.map((budget) => budget.category);
 
   return (
-    <div className="bg-white p-4 px-8 rounded-lg xl:col-span-2 xl:order-2 xl:row-start-1 xl:row-end-3">
+    <div className="bg-white p-4 px-8 rounded-lg xl:col-start-2 xl:order-2 xl:row-start-1 xl:row-end-3">
       <div className="flex justify-between mb-4 mt-8">
-        <p className="font-semibold">Budgets</p>
+        <p className="font-semibold text-xl">Budgets</p>
         <button className="text-sm text-grey-500">See Details →</button>
       </div>
       <div className="w-full h-64 max-sm:h-92 flex mt-4 items-center max-sm:flex-col">
@@ -50,7 +50,7 @@ export default function BudgetsChart() {
                   return null;
                 }
                 return (
-                  <div key={idx} className="flex flex-row gap-8 items-center w-max">
+                  <div key={idx} className="flex flex-row gap-3 items-center w-max">
                     <div className='w-2 h-full rounded' style={{ backgroundColor: budget.theme }}></div>
                       <div className='flex flex-col gap-2'>
                         <p className='text-Grey500 text-nowrap'>{budget.category}</p>

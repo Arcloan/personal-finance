@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useTransactionsState } from '@/context/transactions/TransactionsStateContext';
 import SelectWithImage from "@/components/SelectWithImage";
-// import Link from 'next/link';
+
 
 const sortOptions = [
   { value: 'newest', label: 'Newest' },
@@ -141,7 +141,7 @@ export default function TransactionsPage() {
       <div className="bg-white rounded-lg shadow overflow-x-auto">
         <table className="min-w-full">
           <thead className="text-left text-sm text-Grey500">
-            <tr>
+            <tr className='max-md:sr-only'>
               <th className="p-4">Recipient / Sender</th>
               <th className="p-4">Category</th>
               <th className="p-4">Transaction Date</th>
@@ -153,12 +153,24 @@ export default function TransactionsPage() {
               <tr key={idx} className="border-t border-Grey100">
                 <td className="p-4 flex items-center gap-3 truncate">
                   <img className="size-10 rounded-full" src={t.avatar?.slice(1)} alt='Profile pic' />
-                  {t.name}
+                  <div className='flex flex-col gap-1'>
+                    <p>{t.name}</p>
+                    <p className='text-Grey500 md:hidden'>{t.category}</p>
+                  </div>
                 </td>
-                <td className="p-4 text-Grey500">{t.category}</td>
-                <td className="p-4 text-Grey500">{new Date(t.date).toLocaleDateString()}</td>
-                <td className={`p-4 pr-8 font-semibold text-right ${t.amount > 0 ? 'text-Green' : ''}`}>
-                  {t.amount > 0 ? '+' : ''}${t.amount.toFixed(2)}
+                <td className="p-4 text-Grey500 max-md:sr-only">{t.category}</td>
+                <td className="p-4 text-Grey500 max-md:sr-only">{new Date(t.date).toLocaleDateString()}</td>
+                <td className={`p-4 pr-8 max-md:pr-4 font-semibold text-right ${t.amount > 0 ? 'text-Green' : ''}`}>
+                  <div className='flex flex-col gap-1'>
+                    <p>{t.amount > 0 ? '+' : ''}${t.amount.toFixed(2)}</p>
+                    <p className='text-Grey500 font-normal md:hidden'>{new Date(t.date).toLocaleString().split(",")[0].split("/").map((component, idx) => {
+                      if (idx == 1) {
+                        return ["Jan", "Feb", "Mar", "Apr", " May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"][Number(component) - 1]
+                      }
+                        return component;
+                      }).join(" ")}
+                      </p>
+                  </div>
                 </td>
               </tr>
             ))}

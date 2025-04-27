@@ -6,9 +6,9 @@ export default function TransactionsList() {
   const transactions = useTransactionsState();
 
   return (
-    <div className="bg-white p-4 rounded-lg xl:col-span-3 xl:order-3 xl:row-start-2 xl:row-end-4 xl:py-10 xl:px-8">
+    <div className="bg-white p-4 rounded-lg xl:col-start-1 xl:order-3 xl:row-start-2 xl:row-end-4 xl:py-10 xl:px-8">
       <div className="flex justify-between mb-4">
-        <p className="font-semibold">Transactions</p>
+        <p className="font-semibold text-xl">Transactions</p>
         <button className="text-sm text-grey-500">View All →</button>
       </div>
       <ul className="divide-y divide-Grey100 text-sm flex flex-col gap-4">
