@@ -6,7 +6,7 @@ export default function TransactionsList() {
   const transactions = useTransactionsState();
 
   return (
-    <div className="bg-white p-4 rounded-lg 2xl:col-span-3 2xl:order-3 2xl:row-start-2 2xl:row-end-4 2xl:py-10 2xl:px-8">
+    <div className="bg-white p-4 rounded-lg xl:col-span-3 xl:order-3 xl:row-start-2 xl:row-end-4 xl:py-10 xl:px-8">
       <div className="flex justify-between mb-4">
         <p className="font-semibold">Transactions</p>
         <button className="text-sm text-grey-500">View All →</button>

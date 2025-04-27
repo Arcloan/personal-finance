@@ -10,7 +10,7 @@ export default function BudgetsChart() {
   const categories = budgets.map((budget) => budget.category);
 
   return (
-    <div className="bg-white p-4 px-8 rounded-lg 2xl:col-span-2 2xl:order-2 2xl:row-start-1 2xl:row-end-3">
+    <div className="bg-white p-4 px-8 rounded-lg xl:col-span-2 xl:order-2 xl:row-start-1 xl:row-end-3">
       <div className="flex justify-between mb-4 mt-8">
         <p className="font-semibold">Budgets</p>
         <button className="text-sm text-grey-500">See Details →</button>

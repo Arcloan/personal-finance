@@ -7,7 +7,7 @@ export default function PotsSection() {
   const pots = usePotsState();
 
   return (
-    <div className="bg-white p-4 rounded-lg 2xl:col-span-3 2xl:order-1 2xl:py-4 py-8 2xl:row-end-2 row-start-1">
+    <div className="bg-white p-4 rounded-lg xl:col-span-3 xl:order-1 xl:py-4 py-8 xl:row-end-2 row-start-1">
       <div className="flex justify-between mb-4">
         <p className="font-semibold">Pots</p>
         <button className="text-sm text-Grey500">See Details →</button>
@@ -28,7 +28,7 @@ export default function PotsSection() {
           return (
             <div key={idx} className="flex flex-row gap-8 items-center">
               <div className='w-2 h-full rounded' style={{ backgroundColor: pot.theme }}></div>
-              <div className='flex flex-col gap-2'>
+              <div className='flex flex-col gap-2 truncate'>
                 <p className='text-Grey500'>{pot.name}</p>
                 <p className='font-semibold'>{`$${pot.total}`}</p>
               </div>

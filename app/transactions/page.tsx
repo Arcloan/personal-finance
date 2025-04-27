@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useTransactionsState } from '@/context/transactions/TransactionsStateContext';
+import SelectWithImage from "@/components/SelectWithImage";
 // import Link from 'next/link';
 
 const sortOptions = [
@@ -28,6 +29,8 @@ export default function TransactionsPage() {
     const unique = new Set(transactions.map((t) => t.category));
     return Array.from(unique);
   }, [transactions]);
+
+  console.log(categories);
 
   const filteredTransactions = useMemo(() => {
     let filtered = transactions.filter((t) =>
@@ -71,7 +74,7 @@ export default function TransactionsPage() {
       <h1 className="text-2xl font-bold text-Grey900 mb-6">Transactions</h1>
 
       {/* Controls */}
-      <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
+      <div className="flex flex-row max-md:gap-24 items-center gap-4 mb-6">
         <input
           type="text"
           placeholder="Search transaction"
@@ -79,10 +82,35 @@ export default function TransactionsPage() {
           onChange={(e) => updateParam('search', e.target.value)}
           className="border rounded-lg px-4 py-2 w-full md:w-1/3"
         />
-        <div className='ml-auto flex gap-4'>
+        <div className='md:hidden flex gap-6'>
+          <SelectWithImage imageUrl="/assets/images/icon-sort-mobile.svg" type="sort" options={[
+            { value: 'newest', label: 'Newest' },
+            { value: 'oldest', label: 'Oldest' },
+            { value: 'atoz', label: 'A to Z' },
+            { value: 'ztoa', label: 'Z to A' },
+            { value: 'highest', label: 'Highest' },
+            { value: 'lowest', label: 'Lowest' },
+            ]} updateParam={updateParam}></SelectWithImage>
+
+            <SelectWithImage imageUrl="/assets/images/icon-filter-mobile.svg" type="filter" options={[
+            { value: 'all', label: 'All Transactions' },
+            { value: 'General', label: 'General' },
+            { value: 'Dining Out', label: 'Dining Out' },
+            { value: 'Groceries', label: 'Groceries' },
+            { value: 'Entertainment', label: 'Entertainment' },
+            { value: 'Transportation', label: 'Transportation' },
+            { value: 'Lifestyle', label: 'Lifestyle' },
+            { value: 'Personal Care', label: 'Personal Care' },
+            { value: 'Education', label: 'Education' },
+            { value: 'Bills', label: 'Bills' },
+            { value: 'Shopping', label: 'Shopping' },
+            ]} updateParam={updateParam}></SelectWithImage>
+        </div>
+        <div className='ml-auto flex gap-4 max-md:hidden'>
             <div className='flex gap-2 items-center'>
                 <p className='text-Grey500 max-md:hidden'>Sort by</p>
                 <select
+                id='sort'
                 value={sort}
                 onChange={(e) => updateParam('sort', e.target.value)}
                 className="border rounded-lg px-4 py-2"
@@ -95,6 +123,7 @@ export default function TransactionsPage() {
             <div className='flex gap-2 items-center'>
                 <p className='text-Grey500 max-md:hidden'>Category</p>
                 <select
+                id='filter'
                 value={filter}
                 onChange={(e) => updateParam('filter', e.target.value)}
                 className="border rounded-lg px-4 py-2"
@@ -122,7 +151,7 @@ export default function TransactionsPage() {
           <tbody>
             {displayedTransactions.map((t, idx) => (
               <tr key={idx} className="border-t border-Grey100">
-                <td className="p-4 flex items-center gap-3">
+                <td className="p-4 flex items-center gap-3 truncate">
                   <img className="size-10 rounded-full" src={t.avatar?.slice(1)} alt='Profile pic' />
                   {t.name}
                 </td>
