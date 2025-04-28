@@ -20,10 +20,10 @@ export default function BudgetsChart() {
         {/*// @ts-expect-error It seems the responsive container want only one child but it does work perfect with two child*/}
         <ResponsiveContainer className={"relative"}>
           <div className='absolute grid top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]'>
-            {<p className='font-semibold text-4xl'>{`$${transactions.filter((transaction) => {
+            {<p className='font-semibold text-3xl'>{`$${transactions.filter((transaction) => {
               return (categories.some((cat) => cat === transaction.category)) && (transaction.date.split("-")[1] == "08");
             }).
-              reduce((acc, transactionRemained) => acc + Math.abs(transactionRemained.amount), 0)
+              reduce((acc, transactionRemained) => acc + Math.abs(transactionRemained.amount), 0).toFixed(2)
             }`}</p>}
             <p className='text-Grey500 text-sm justify-self-center'>{`of ${budgets.reduce((acc, budget) => acc + budget.maximum, 0)} limit`}</p>
           </div>
@@ -44,14 +44,14 @@ export default function BudgetsChart() {
             <Tooltip />
           </PieChart>
         </ResponsiveContainer>
-        <div className='w-max'>
+        <div className='max-[636px]:w-full'>
             <div className='grid max-sm:grid-cols-2 gap-2 text-sm'>
               {budgets.map((budget, idx) => {
                 if (idx > 3) {
                   return null;
                 }
                 return (
-                  <div key={idx} className="flex flex-row gap-3 items-center w-max">
+                  <div key={idx} className="flex flex-row gap-3 items-center">
                     <div className='w-2 h-full rounded' style={{ backgroundColor: budget.theme }}></div>
                       <div className='flex flex-col gap-2'>
                         <p className='text-Grey500 text-nowrap'>{budget.category}</p>
