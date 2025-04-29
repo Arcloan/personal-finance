@@ -48,6 +48,7 @@ export default function ModalCreateBudget() {
       return;
     }
 
+    setError('');
     dispatch({
       type: 'ADD_BUDGET',
       payload: {

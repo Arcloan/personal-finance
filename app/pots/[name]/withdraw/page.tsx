@@ -4,7 +4,7 @@ import { usePotsState } from '@/context/pots/PotsStateContext';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import BudgetDropdown from '@/components/BudgetDropdown';
-import ModalCreatePot from '@/components/ModalCreatePot';
+import ModalWithdrawPot from '@/components/ModalWithdrawPot';
 
 export default function PotsPage() {
   const pots = usePotsState();
@@ -12,7 +12,7 @@ export default function PotsPage() {
 
   return (
     <div className="p-6">
-      <ModalCreatePot></ModalCreatePot>
+      <ModalWithdrawPot></ModalWithdrawPot>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-Grey900">Pots</h1>
         <Link href="/pots/create" className="bg-Grey900 text-white px-4 py-2 rounded-lg">
@@ -37,6 +37,7 @@ export default function PotsPage() {
                 <BudgetDropdown
                   onEdit={() => router.push(`/pots/${encodeURIComponent(pot.name)}/edit`)}
                   onDelete={() => router.push(`/pots/${encodeURIComponent(pot.name)}/delete`)}
+                  name={"Pot"}
                 />
               </div>
               <div className="flex justify-between items-end mb-2">

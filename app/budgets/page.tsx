@@ -97,7 +97,7 @@ export default function BudgetsPage() {
                       <div className={`w-3 h-3 rounded-full`} style={{backgroundColor: b.theme}} />
                       {b.category}
                     </h2>
-                    <BudgetDropdown onDelete={() => router.push(`/budgets/${b.category}/delete`)} onEdit={() => router.push(`/budgets/${b.category}/edit`)}></BudgetDropdown>
+                    <BudgetDropdown onDelete={() => router.push(`/budgets/${b.category}/delete`)} name={"Budget"} onEdit={() => router.push(`/budgets/${b.category}/edit`)}></BudgetDropdown>
                   </div>
                   <p className="text-sm text-Grey500 mb-2">Maximum of ${b.maximum.toFixed(2)}</p>
                   <div className="w-full h-3 bg-Grey100 rounded-full mb-2">

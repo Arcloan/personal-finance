@@ -20,8 +20,6 @@ interface DashboardProviderProps {
 
 export default function DashboardProvider({ children }: DashboardProviderProps) {
   const [transactions, dispatchTransactions] = useReducer(transactionsReducer, data.transactions);
-  const [pots, dispatchPots] = useReducer(potsReducer, data.pots);
-
   const [budgets, dispatchBudgets] = useReducer(budgetsReducer, [], () => {
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem('budgets');
@@ -30,9 +28,18 @@ export default function DashboardProvider({ children }: DashboardProviderProps) 
     return data.budgets;
   });
 
+  const [pots, dispatchPots] = useReducer(potsReducer, [], () => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('pots');
+      return stored ? JSON.parse(stored) : data.pots;
+    }
+    return data.pots;
+  });
+
   useEffect(() => {
     localStorage.setItem('budgets', JSON.stringify(budgets));
-  }, [budgets]);
+    localStorage.setItem('pots', JSON.stringify(pots))
+  }, [budgets, pots]);
 
   return (
     <TransactionsStateContext.Provider value={transactions}>

@@ -19,7 +19,7 @@ export function Modal({ children }: ModalProps) {
       <div className="bg-white rounded-2xl p-6 relative max-w-md w-full">
         <button
           onClick={closeModal}
-          className="absolute top-4 right-4 text-Grey500 hover:text-Grey900 text-2xl"
+          className="absolute top-4 right-4 cursor-pointer text-Grey500 hover:text-Grey900 text-2xl"
         >
           &times;
         </button>

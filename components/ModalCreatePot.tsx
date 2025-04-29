@@ -16,29 +16,45 @@ export default function ModalCreatePot() {
   const [target, setTarget] = useState('');
   const [color, setColor] = useState('#277C78');
   const [error, setError] = useState('');
+  const [nameError, setNameError] = useState('');
   const targetRef = useRef<HTMLInputElement>(null);
+  const nameErrorRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (error && targetRef.current) {
       targetRef.current.focus();
     }
-  }, [error]);
+    if (nameError && nameErrorRef.current) {
+      nameErrorRef.current.focus();
+    }
+  }, [error, nameError]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const parsedTarget = parseFloat(target);
-    if (!name || isNaN(parsedTarget) || parsedTarget <= 0) {
+    if (isNaN(parsedTarget) || parsedTarget <= 0) {
       setError('Please enter a valid name and positive number.');
       return;
     }
+    if (!name) {
+      setNameError("Please enter a valid name.");
+      return;
+    }
+    const usedNamesPots = pots.map((pot) => pot.name);
+    if (usedNamesPots.indexOf(name) !== -1) {
+      setNameError("This name is alredy used. You should edit the corresponding pot.");
+      return;
+    }
 
+    setError('');
+    setNameError('');
     dispatch({
       type: 'ADD_POT',
       payload: {
         name,
-        theme,
+        theme: color,
         target: parsedTarget,
-        amount: 0,
+        total: 0,
       },
     });
     showToast('Pot created successfully', 'success');
@@ -51,12 +67,14 @@ export default function ModalCreatePot() {
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <label className="text-xs text-Grey500">Pot Name
           <input
+            ref={nameErrorRef}
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="e.g. Vacation"
-            className="border rounded-lg px-4 py-2 mt-1 text-sm block w-full"
+            className="border text-black rounded-lg px-4 py-2 mt-1 text-sm block w-full"
           />
+          {nameError && <p className="text-red-500 text-xs mt-1">{nameError}</p>}
         </label>
         <label className="text-xs text-Grey500">Target Amount
           <input

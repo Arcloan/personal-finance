@@ -1,19 +1,22 @@
-export interface Pot {
-  name: string;
-  target: number;
-  total: number;
-  theme: string;
-}
+import { Pot, PotAction } from "./potsTypes";
 
-export type PotsAction = { type: 'add'; payload: Pot } | { type: 'update'; payload: Pot };
-
-export function potsReducer(state: Pot[], action: PotsAction): Pot[] {
-  switch (action.type) {
-    case 'add':
-      return [action.payload, ...state];
-    case 'update':
-      return state.map(p => (p.name === action.payload.name ? action.payload : p));
+export function potsReducer(state: Pot[], action: PotAction): Pot[] {
+   switch (action.type) {
+    case 'ADD_POT':
+      return [...state, action.payload];
+    case 'UPDATE_POT':
+      return state.map(pot =>
+        pot.name === action.payload.name ? action.payload.updatedPot : pot
+      );
+    case 'DELETE_POT':
+      return state.filter(pot => pot.name !== action.payload.name);
+    case 'UPDATE_POT_AMOUNT':
+      return state.map((pot) =>
+        pot.name === action.payload.name
+          ? { ...pot, total: action.payload.newAmount }
+          : pot
+      );
     default:
-      throw new Error('Unhandled action type');
+      return state;
   }
 }

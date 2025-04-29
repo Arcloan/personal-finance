@@ -5,9 +5,10 @@ import { useState, useRef, useEffect } from 'react';
 interface BudgetDropdownProps {
   onEdit: () => void;
   onDelete: () => void;
+  name: string;
 }
 
-export default function BudgetDropdown({ onEdit, onDelete }: BudgetDropdownProps) {
+export default function BudgetDropdown({ onEdit, onDelete, name }: BudgetDropdownProps) {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -44,7 +45,7 @@ export default function BudgetDropdown({ onEdit, onDelete }: BudgetDropdownProps
             }}
             className="w-full text-left px-4 py-2 text-grey-900 hover:bg-grey-100 rounded-lg cursor-pointer"
           >
-            Edit Budget
+            Edit {name}
           </button>
           <div className="border-t border-grey-100 my-2"></div>
           <button
@@ -54,7 +55,7 @@ export default function BudgetDropdown({ onEdit, onDelete }: BudgetDropdownProps
             }}
             className="w-full text-left px-4 py-2 text-red-600 hover:bg-grey-100 rounded-lg cursor-pointer"
           >
-            Delete Budget
+            Delete {name}
           </button>
         </div>
       )}

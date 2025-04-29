@@ -35,6 +35,7 @@ export default function PotsPage() {
                 <BudgetDropdown
                   onEdit={() => router.push(`/pots/${encodeURIComponent(pot.name)}/edit`)}
                   onDelete={() => router.push(`/pots/${encodeURIComponent(pot.name)}/delete`)}
+                  name={"Pot"}
                 />
               </div>
               <div className="flex justify-between items-end mb-2">
@@ -52,10 +53,12 @@ export default function PotsPage() {
                 <span>Target of ${pot.target.toLocaleString()}</span>
               </div>
               <div className="flex gap-4">
-                <button className="flex-1 py-2 rounded-lg bg-Grey100 text-Grey900 font-medium">
+                <button onClick={() => router.push(`/pots/${encodeURIComponent(pot.name)}/add`)}
+                className="flex-1 py-2 rounded-lg bg-Grey100 text-Grey900 font-medium cursor-pointer">
                   + Add Money
                 </button>
-                <button className="flex-1 py-2 rounded-lg bg-Grey100 text-Grey900 font-medium">
+                <button onClick={() => router.push(`/pots/${encodeURIComponent(pot.name)}/withdraw`)}
+                className="flex-1 py-2 rounded-lg bg-Grey100 text-Grey900 font-medium cursor-pointer">
                   Withdraw
                 </button>
               </div>

@@ -23,7 +23,7 @@ export default function ModalDeletePot() {
 
   return (
     <Modal>
-      <h2 className="text-2xl font-bold mb-2">Delete '{name}'?</h2>
+      <h2 className="text-2xl font-bold mb-2">Delete &apos;{name}&apos;?</h2>
       <p className="text-Grey500 mb-6 text-sm">
         Are you sure you want to delete this pot? This action cannot be reversed.
       </p>

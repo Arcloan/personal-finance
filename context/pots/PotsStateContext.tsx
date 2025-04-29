@@ -1,6 +1,6 @@
 'use client';
 import { createContext, useContext } from 'react';
-import { Pot } from './potsReducer';
+import { Pot } from './potsTypes';
 
 export const PotsStateContext = createContext<Pot[] | undefined>(undefined);
 
