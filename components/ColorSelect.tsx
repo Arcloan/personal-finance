@@ -38,13 +38,13 @@ export function ColorSelect({ selected, setSelected }: ColorSelectProps) {
   const selectedColors = budgets.map((budget) => budget.theme);
 
   return (
-    <div className="relative">
+    <div className="relative py-1">
       <button
         type="button"
         onClick={() => setOpen(!open)}
         className="border rounded-lg px-4 py-2 w-full text-left flex items-center justify-between gap-2"
       >
-        <div className='flex gap-2'>
+        <div className='flex gap-2 text-black'>
           <div className="w-4 h-4 rounded-full" style={{ backgroundColor: selected }} />
           {colors.find(c => c.value === selected)?.label || 'Select Color'}
         </div>
@@ -60,7 +60,7 @@ export function ColorSelect({ selected, setSelected }: ColorSelectProps) {
                 setSelected(color.value);
                 setOpen(false);
               }}
-              className="flex items-center justify-between gap-2 px-4 py-2 hover:bg-grey-100 w-full text-left"
+              className="flex items-center justify-between gap-2 px-4 py-2 hover:bg-Grey100 w-full text-left"
             >
               <div className='flex gap-2'>
                 <div className="w-4 h-4 rounded-full" style={{ backgroundColor: color.value }} />

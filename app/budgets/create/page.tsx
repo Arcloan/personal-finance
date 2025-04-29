@@ -3,6 +3,7 @@
 import { useBudgetsState } from '@/context/budgets/BudgetsStateContext';
 import { useTransactionsState } from '@/context/transactions/TransactionsStateContext';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
+import Link from 'next/link';
 import BudgetDropdown from '@/components/BudgetDropdown';
 import ModalCreateBudget from '@/components/ModalCreateBudget';
 
@@ -22,9 +23,9 @@ export default function BudgetsPage() {
       <ModalCreateBudget></ModalCreateBudget>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-Grey900">Budgets</h1>
-        <button className="bg-Grey900 text-white px-4 py-2 rounded-lg md:mt-0">
+        <Link href={"/budgets/create"} className="bg-Grey900 cursor-pointer text-white px-4 py-2 rounded-lg md:mt-0">
           + Add New Budget
-        </button>
+        </Link>
       </div>
 
       <div className="flex flex-col xl:flex-row gap-6">

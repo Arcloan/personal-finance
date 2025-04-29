@@ -1,6 +1,6 @@
 'use client';
 import { createContext, useContext } from 'react';
-import { Budget } from './budgetsReducer';
+import { Budget } from './budgetsTypes';
 
 export const BudgetsStateContext = createContext<Budget[] | undefined>(undefined);
 

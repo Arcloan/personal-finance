@@ -3,12 +3,16 @@
 import { useBudgetsState } from '@/context/budgets/BudgetsStateContext';
 import { useTransactionsState } from '@/context/transactions/TransactionsStateContext';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
+import Link from 'next/link';
 import BudgetDropdown from '@/components/BudgetDropdown';
+import { useRouter } from 'next/navigation';
 
 export default function BudgetsPage() {
   const budgets = useBudgetsState();
   const transactions = useTransactionsState();
   const categories = budgets.map((budget) => budget.category);
+  const router = useRouter();
+
 
   const getSpentAmount = (category: string) => {
     return transactions
@@ -20,9 +24,9 @@ export default function BudgetsPage() {
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-Grey900">Budgets</h1>
-        <button className="bg-Grey900 text-white px-4 py-2 rounded-lg md:mt-0">
+        <Link href={"/budgets/create"} className="bg-Grey900 text-white px-4 py-2 rounded-lg md:mt-0">
           + Add New Budget
-        </button>
+        </Link>
       </div>
 
       <div className="flex flex-col xl:flex-row gap-6">
@@ -93,7 +97,7 @@ export default function BudgetsPage() {
                       <div className={`w-3 h-3 rounded-full`} style={{backgroundColor: b.theme}} />
                       {b.category}
                     </h2>
-                    <BudgetDropdown onDelete={console.log} onEdit={console.log}></BudgetDropdown>
+                    <BudgetDropdown onDelete={() => router.push(`/budgets/${b.category}/delete`)} onEdit={() => router.push(`/budgets/${b.category}/edit`)}></BudgetDropdown>
                   </div>
                   <p className="text-sm text-Grey500 mb-2">Maximum of ${b.maximum.toFixed(2)}</p>
                   <div className="w-full h-3 bg-Grey100 rounded-full mb-2">

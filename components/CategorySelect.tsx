@@ -26,20 +26,19 @@ export function CategorySelect({ selected, setSelected }: CategorySelectProps) {
   const [open, setOpen] = useState(false);
   const budgets = useBudgetsState();
   const selectedCategories = budgets.map((budget) => budget.category);
-  const freeCategories = categories.filter((cat) => selectedCategories.indexOf(cat.label) !== -1);
+  const freeCategories = categories.filter((cat) => selectedCategories.indexOf(cat.label) === -1);
 
   return (
-    <div className="relative">
+    <div className="relative py-1">
       <button
         type="button"
         onClick={() => setOpen(!open)}
         className="border rounded-lg px-4 py-2 w-full text-left flex items-center justify-between gap-2"
       >
-        <div className='flex gap-2'>
-          <div className="w-4 h-4 rounded-full" style={{ backgroundColor: selected }} />
-          {categories.find(c => c.value === selected)?.label || 'Select Category'}
+        <div className='flex text-sm text-black'>
+          {categories.find(c => c.value === selected)?.label || freeCategories[0].label}
         </div>
-        {categories.find(c => c.value === selected) && <div className="w-0 h-0 border-l-6 border-r-6 border-t-6 border-l-transparent border-r-transparent border-t-black" />}
+       <div className="w-0 h-0 border-l-6 border-r-6 border-t-6 border-l-transparent border-r-transparent border-t-black" />
       </button>
       {open && (
         <div className="absolute z-10 mt-2 w-full bg-white rounded-lg shadow-lg max-h-48 overflow-y-auto">
@@ -51,7 +50,7 @@ export function CategorySelect({ selected, setSelected }: CategorySelectProps) {
                 setSelected(cat.value);
                 setOpen(false);
               }}
-              className="flex items-center justify-between gap-2 px-4 py-2 hover:bg-grey-100 w-full text-left"
+              className="flex items-center justify-between gap-2 px-4 py-2 hover:bg-Grey100 w-full text-left"
             >
               <div className='flex gap-2'>
                 {cat.label}

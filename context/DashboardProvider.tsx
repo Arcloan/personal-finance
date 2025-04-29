@@ -10,6 +10,8 @@ import { potsReducer } from './pots/potsReducer';
 import { BudgetsStateContext } from './budgets/BudgetsStateContext';
 import { BudgetsDispatchContext } from "./budgets/BudgetsDispatchContext";
 import { budgetsReducer } from './budgets/budgetsReducer';
+import { ToastProvider } from './toast/ToastContext';
+import { useEffect } from 'react';
 import data from '@/data.json';
 
 interface DashboardProviderProps {
@@ -19,7 +21,18 @@ interface DashboardProviderProps {
 export default function DashboardProvider({ children }: DashboardProviderProps) {
   const [transactions, dispatchTransactions] = useReducer(transactionsReducer, data.transactions);
   const [pots, dispatchPots] = useReducer(potsReducer, data.pots);
-  const [budgets, dispatchBudgets] = useReducer(budgetsReducer, data.budgets);
+
+  const [budgets, dispatchBudgets] = useReducer(budgetsReducer, [], () => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('budgets');
+      return stored ? JSON.parse(stored) : data.budgets;
+    }
+    return data.budgets;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('budgets', JSON.stringify(budgets));
+  }, [budgets]);
 
   return (
     <TransactionsStateContext.Provider value={transactions}>
@@ -28,7 +41,9 @@ export default function DashboardProvider({ children }: DashboardProviderProps) 
           <PotsDispatchContext.Provider value={dispatchPots}>
             <BudgetsStateContext.Provider value={budgets}>
               <BudgetsDispatchContext.Provider value={dispatchBudgets}>
-                {children}
+                <ToastProvider>
+                  {children}
+                </ToastProvider>
               </BudgetsDispatchContext.Provider>
             </BudgetsStateContext.Provider>
           </PotsDispatchContext.Provider>
