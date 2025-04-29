@@ -3,7 +3,7 @@
 import { Modal } from './Modal';
 import { ColorSelect } from './ColorSelect';
 import { CategorySelect } from './CategorySelect';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { useBudgetsState } from '@/context/budgets/BudgetsStateContext';
 import { useBudgetsDispatch } from '@/context/budgets/BudgetsDispatchContext';
@@ -19,18 +19,32 @@ export default function ModalEditBudget() {
   const [initialBudget, setInitialBudget] = useState(budgets.find((budget) => budget.category === decodeURIComponent(category)))
   const [selectedColor, setSelectedColor] = useState(initialBudget!.theme);
   const [selectedCategory, setSelectedCategory] = useState(initialBudget!.category);
-  const [amount, setAmount] = useState(initialBudget!.maximum);
+  const [amount, setAmount] = useState(initialBudget!.maximum.toString());
+  const [error, setError] = useState('');
+  const amountRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (error && amountRef.current) {
+      amountRef.current.focus();
+    }
+  }, [error]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(initialBudget!.category);
+    const parsedAmount = Number(amount);
+    if (isNaN(parsedAmount) || parsedAmount <= 0) {
+      setError('Please enter a valid positive number.');
+      return;
+    }
+
+    setError('');
     dispatch({
       type: 'UPDATE_BUDGET',
       payload: {
         oldCategory: initialBudget!.category,
         newBudget: {
           category: selectedCategory,
-          maximum: Number(amount.toFixed(2)),
+          maximum: Number(Number(amount).toFixed(2)),
           theme: selectedColor,
         },
       },
@@ -50,12 +64,14 @@ export default function ModalEditBudget() {
         </label>
         <label htmlFor="" className='text-xs text-Grey500'>Maximum Spending
           <input
+            ref={amountRef}
             type="text"
             value={amount}
-            onChange={(e) => setAmount(Number(e.target.value))}
+            onChange={(e) => setAmount((e.target.value))}
             placeholder="$ e.g. 2000"
             className="border rounded-lg px-4 py-2 mt-1 text-sm text-black block w-full"
           />
+          {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
         </label>
         <label className='text-xs text-Grey500' htmlFor="">Theme
           <ColorSelect selected={selectedColor} setSelected={setSelectedColor} />

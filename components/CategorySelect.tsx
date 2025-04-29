@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useBudgetsState } from '@/context/budgets/BudgetsStateContext';
 
 
@@ -27,6 +27,11 @@ export function CategorySelect({ selected, setSelected }: CategorySelectProps) {
   const budgets = useBudgetsState();
   const selectedCategories = budgets.map((budget) => budget.category);
   const freeCategories = categories.filter((cat) => selectedCategories.indexOf(cat.label) === -1);
+
+  useEffect(() => {
+    console.log(selected);
+    setSelected(selected);
+  });
 
   return (
     <div className="relative py-1">

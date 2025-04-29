@@ -113,7 +113,7 @@ export default function BudgetsPage() {
                   <div className="bg-Grey100 p-4 rounded-lg">
                     <div className="flex justify-between items-center mb-2">
                       <p className="text-Grey900 font-semibold">Latest Spending</p>
-                      <p className="text-sm text-Grey500">See All</p>
+                      <Link href={`/transactions?filter=${b.category}&page=1`} className="text-sm text-Grey500">See All</Link>
                     </div>
                     <div className="flex flex-col divide-y-2 divide-Grey300/50 gap-2">
                       {latestTransactions.map((t, idx) => (
