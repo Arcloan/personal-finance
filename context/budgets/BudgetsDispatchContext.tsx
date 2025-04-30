@@ -1,6 +1,6 @@
 'use client';
 import { createContext, useContext } from 'react';
-import { BudgetsAction } from './budgetsReducer';
+import { BudgetsAction } from './budgetsTypes';
 
 export const BudgetsDispatchContext = createContext<React.Dispatch<BudgetsAction> | undefined>(undefined);
 
