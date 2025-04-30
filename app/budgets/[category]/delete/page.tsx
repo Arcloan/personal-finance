@@ -28,7 +28,7 @@ export default function BudgetsPage() {
       </div>
 
       <div className="flex flex-col xl:flex-row gap-6">
-        {/* Left Chart and Summary */}
+        
         <div className="xl:w-1/3 flex flex-col gap-6">
           <div className="bg-white p-6 rounded-2xl shadow flex flex-col md:max-lg:flex-row md:max-lg:gap-8 md:max-lg:pl-8 items-center">
             <div className="w-full h-64 max-sm:h-92 flex mt-4 items-center max-sm:flex-col md:max-lg:w-64 md:max-lg:shrink-0">
@@ -78,7 +78,6 @@ export default function BudgetsPage() {
           </div>
         </div>
 
-        {/* Right List of Budgets */}
         <div className="flex-1 flex flex-col gap-6">
           {budgets.map((b) => {
             const spent = getSpentAmount(b.category);
@@ -95,7 +94,7 @@ export default function BudgetsPage() {
                       <div className={`w-3 h-3 rounded-full`} style={{backgroundColor: b.theme}} />
                       {b.category}
                     </h2>
-                    <BudgetDropdown onDelete={console.log} onEdit={console.log}></BudgetDropdown>
+                    <BudgetDropdown name='Budget' onDelete={() => null} onEdit={() => null}></BudgetDropdown>
                   </div>
                   <p className="text-sm text-Grey500 mb-2">Maximum of ${b.maximum.toFixed(2)}</p>
                   <div className="w-full h-3 bg-Grey100 rounded-full mb-2">
@@ -117,7 +116,7 @@ export default function BudgetsPage() {
                       {latestTransactions.map((t, idx) => (
                         <div key={idx} className="flex justify-between text-sm py-4">
                           <div className="flex items-center gap-2">
-                            <img src={t.avatar?.slice(1)} alt='' className="size-8 rounded-full" />
+                            <img src={t.avatar?.slice(1)} alt='Avatar image' className="size-8 rounded-full" />
                             <span className='font-semibold'>{t.name}</span>
                           </div>
                           <div className='flex flex-col gap-2 text-right'>

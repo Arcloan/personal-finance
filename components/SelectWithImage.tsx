@@ -34,7 +34,7 @@ export default function SelectWithImage({imageUrl, updateParam, type, options} :
   }, []);
 
   return (
-    <div className="md:hidden relative flex flex-col items-center space-y-4 max-md:mr-8" ref={menuRef}>
+    <div aria-label="select option input" className="md:hidden relative flex flex-col items-center space-y-4 max-md:mr-8" ref={menuRef}>
       <img
         src={imageUrl}
         alt="Apri Selezione"

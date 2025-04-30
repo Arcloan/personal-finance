@@ -25,7 +25,7 @@ export default function BottomNavbar() {
                 isActive ? 'bg-Beige100 text-Grey900 border-b-6 border-Green' : 'hover:text-Grey300'
               }`}
             >
-              <img className={`text-2xl ${isActive ? 'filter-green' : ''}`} src={link.icon} />
+              <img className={`text-2xl ${isActive ? 'filter-green' : ''}`} src={link.icon} alt={link.label} />
               <span className="hidden md:block">{link.label}</span>
             </div>
           </Link>

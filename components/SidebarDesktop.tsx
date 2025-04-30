@@ -23,8 +23,8 @@ export default function SidebarDesktop() {
   return (
     <aside className={`hidden lg:grid lg:grid-rows-[min-content_auto_auto] ${isMinimized ? 'lg:w-20' : 'lg:w-64'} lg:h-screen bg-Grey900 text-white p-4 pl-0 fixed rounded-r-2xl transition-all duration-300 items-center ${isMinimized ? 'p-2' : 'p-4'}`}>
       <div className={`mb-12 mt-6 flex justify-center pl-4 ${isMinimized ? "justify-self-center" : "justify-self-start"} `} >
-        {!isMinimized && <img src="/assets/images/logo-large.svg" alt="" />}
-        {isMinimized && <img src="/assets/images/logo-small.svg" />}
+        {!isMinimized && <img src="/assets/images/logo-large.svg" alt="Logo" />}
+        {isMinimized && <img src="/assets/images/logo-small.svg" alt='Logo' />}
       </div>
       <nav className={`flex flex-col ${isMinimized ? 'gap-6' : 'gap-2'} ${isMinimized ? 'm-auto' : 'self-start'} items-center w-full`}>
         {links.map((link) => {
@@ -37,7 +37,7 @@ export default function SidebarDesktop() {
                   
                 } ${isActive ? 'border-Green' : 'border-transparent'}`}
               >
-                <img className={`text-2xl ${isActive ? 'filter-green' : ''}`} src={link.icon} />
+                <img className={`text-2xl ${isActive ? 'filter-green' : ''}`} src={link.icon} alt={link.label} />
                 {!isMinimized && <span className="text-base font-semibold">{link.label}</span>}
               </div>
             </Link>
@@ -49,7 +49,7 @@ export default function SidebarDesktop() {
           onClick={toggleSidebar}
           className="flex items-center gap-2 text-grey-300 pl-4 hover:text-white text-sm cursor-pointer"
         >
-        {isMinimized ? <img src={"/assets/images/icon-minimize-menu.svg"} className='rotate-y-180' /> : <p className={`flex gap-2 ${isMinimized ? "justify-self-center" : "justify-self-start"}`}><img src="/assets/images/icon-minimize-menu.svg" alt="" /> Minimize Menu</p>}
+        {isMinimized ? <img src={"/assets/images/icon-minimize-menu.svg"} alt='Expand Menu' className='rotate-y-180' /> : <p className={`flex gap-2 ${isMinimized ? "justify-self-center" : "justify-self-start"}`}><img src="/assets/images/icon-minimize-menu.svg" alt="Minimize Menu" /> Minimize Menu</p>}
         </button>
       </div>
     </aside>

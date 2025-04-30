@@ -73,7 +73,6 @@ export default function TransactionsPage() {
     <div className="p-6">
       <h1 className="text-2xl font-bold text-Grey900 mb-6">Transactions</h1>
 
-      {/* Controls */}
       <div className="flex flex-row max-md:gap-24 items-center gap-4 mb-6">
         <input
           type="text"
@@ -116,9 +115,9 @@ export default function TransactionsPage() {
                 onChange={(e) => updateParam('sort', e.target.value)}
                 className="border rounded-lg px-4 py-2 hover:cursor-pointer"
                 >
-                {sortOptions.map((option) => (
-                <option key={option.value} value={option.value}>{option.label}</option>
-                ))}
+              {sortOptions.map((option) => (
+                  <option key={option.value} value={option.value}>{option.label}</option>
+                  ))}
                 </select>
             </div>
             <div className='flex gap-2 items-center'>
@@ -138,7 +137,6 @@ export default function TransactionsPage() {
         </div>
       </div>
 
-      {/* Transactions Table */}
       <div className="bg-white rounded-lg shadow overflow-x-auto">
         <table className="min-w-full">
           <thead className="text-left text-sm text-Grey500">
@@ -153,7 +151,7 @@ export default function TransactionsPage() {
             {displayedTransactions.map((t, idx) => (
               <tr key={idx} className="border-t border-Grey100">
                 <td className="p-4 flex items-center gap-3 truncate">
-                  <img className="size-10 rounded-full" src={t.avatar?.slice(1)} alt='Profile pic' />
+                  <img className="size-10 rounded-full" src={t.avatar?.slice(1)} alt='Avatar image' />
                   <div className='flex flex-col gap-1'>
                     <p>{t.name}</p>
                     <p className='text-Grey500 md:hidden'>{t.category}</p>
@@ -179,14 +177,13 @@ export default function TransactionsPage() {
         </table>
       </div>
 
-      {/* Pagination */}
       <div className="flex justify-center items-center gap-2 mt-6">
         <button
           disabled={page <= 1}
           onClick={() => updateParam('page', (page - 1).toString())}
           className="group px-3 py-1 border rounded disabled:opacity-50 flex gap-4 hover:cursor-pointer hover:text-white hover:bg-Grey500"
         >
-            <img src="/assets/images/icon-caret-left.svg" alt="" className='group-hover:filter-white' />
+            <img src="/assets/images/icon-caret-left.svg" alt="previous" className='group-hover:filter-white' />
           Prev
         </button>
         <div className='m-auto flex gap-2'>
@@ -206,7 +203,7 @@ export default function TransactionsPage() {
           className="group px-3 py-1 border rounded disabled:opacity-50 flex gap-4 hover:cursor-pointer hover:text-white hover:bg-Grey500"
         >
           Next
-          <img src="/assets/images/icon-caret-right.svg" alt="" className='group-hover:filter-white' />
+          <img src="/assets/images/icon-caret-right.svg" alt="next" className='group-hover:filter-white' />
         </button>
       </div>
     </div>

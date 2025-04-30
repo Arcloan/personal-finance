@@ -78,11 +78,11 @@ export default function RecurringBillsPage() {
       <h1 className="text-2xl font-bold text-Grey900 mb-6">Recurring Bills</h1>
 
       <div className="flex flex-col lg:flex-row gap-6 mb-6">
-        {/* Left Summary Boxes */}
+        
         <div className="flex flex-col gap-6 lg:w-1/3">
           <div className="bg-Grey900 text-white p-6 rounded-2xl flex flex-col gap-2">
             <div className="flex md:flex-col max-md:items-center max-md:gap-4 gap-2">
-              <img className='size-10' src="/assets/images/icon-recurring-bills.svg" alt="" />
+              <img className='size-10' src="/assets/images/icon-recurring-bills.svg" alt="recurring bills" />
                 <div className='flex flex-col gap-1'>
                     <p>Total Bills</p>
                     <p className="text-3xl font-bold">{`$${(Number(recurringTransaction.reduce(calculatePaid, 0).toFixed(2)) + Number(recurringTransaction.reduce(calculateTotalUpcoming, 0).toFixed(2))).toFixed(2)}`}</p>
@@ -108,9 +108,9 @@ export default function RecurringBillsPage() {
           </div>
         </div>
 
-        {/* Right Table Section */}
+        
         <div className="flex-1 bg-white rounded-lg shadow overflow-x-auto p-4">
-          {/* Controls */}
+          
           <div className="flex gap-4 max-md:gap-8 mb-4">
             <input
               type="text"
@@ -143,7 +143,6 @@ export default function RecurringBillsPage() {
             </div>
           </div>
 
-          {/* Bills Table */}
           <div>
             <table className="min-w-full">
               <thead className="text-left text-sm text-Grey500">
@@ -157,14 +156,14 @@ export default function RecurringBillsPage() {
                 {filteredBills.map((bill, idx) => (
                   <tr key={idx} className="border-t border-Grey100 max-md:flex max-md:flex-col">
                     <td className="p-4 flex items-center gap-3 max-md:font-semibold">
-                      <img src={bill.avatar?.slice(1)} alt="Image of the bill entity" className='size-10 rounded-full' />
+                      <img src={bill.avatar?.slice(1)} alt="Image of the bill entry" className='size-10 rounded-full' />
                       {bill.name}
                     </td>
                     <td className={`p-4 max-md:flex max-md:justify-between ${isPaid(bill) ? 'text-Green' : "text-Grey500"}`}>
                         <div className='flex gap-2 items-center'>
                           <p>Monthly - {new Date(bill.date).getDate()}th</p>
-                          {isPaid(bill) ? <img src="/assets/images/icon-bill-paid.svg" alt="Paid bill icon" /> : ""}
-                          {isDueSoon(bill) ? <img  src="/assets/images/icon-bill-due.svg" alt="Due Soon bill icon" /> : ""}
+                          {isPaid(bill) ? <img src="/assets/images/icon-bill-paid.svg" alt="Paid bill" /> : ""}
+                          {isDueSoon(bill) ? <img  src="/assets/images/icon-bill-due.svg" alt="Due Soon bill" /> : ""}
                         </div>
                         <p className='md:hidden text-black font-semibold'>${Math.abs(bill.amount).toFixed(2)}</p>
                     </td>

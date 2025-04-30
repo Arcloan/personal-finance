@@ -16,7 +16,7 @@ export default function TransactionsList() {
         {transactions.slice(0, 5).map((t, idx) => (
           <li key={idx} className="flex justify-between py-3">
             <div className='flex gap-4 items-center'>
-              <img src={t.avatar?.slice(1)} alt="Picture profile" className='rounded-[50%] 2xl:size-12 w-8 h-8'></img>
+              <img src={t.avatar?.slice(1)} alt="profile picture" className='rounded-[50%] 2xl:size-12 w-8 h-8'></img>
               <p>{t.name}</p>
             </div>
             <div className='flex flex-col gap-2 items-end'>

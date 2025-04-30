@@ -1,12 +1,14 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 import SidebarDesktop from '@/components/SidebarDesktop';
 import BottomNavbar from '@/components/BottomNavbar'
 import DashboardProvider from '@/context/DashboardProvider';
 import SafeHydrate from '@/components/SafeHydrate';
 
-const inter = Inter({ subsets: ['latin'] });
+const PublicSans = localFont({
+  src: './PublicSans-VariableFont_wght.ttf',
+})
 
 export const metadata: Metadata = {
   title: 'Finance Dashboard',
@@ -16,7 +18,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-Grey100 min-h-screen text-Grey900`}>
+      <body className={`${PublicSans.className} bg-Grey100 min-h-screen text-Grey900`}>
         <SidebarDesktop />
         <SafeHydrate>
           <DashboardProvider>
