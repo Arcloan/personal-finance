@@ -6,6 +6,7 @@ import { useState, useRef, useEffect } from 'react';
 import { usePotsDispatch } from '@/context/pots/PotsDispatchContext';
 import { usePotsState } from '@/context/pots/PotsStateContext';
 import { useToast } from '@/context/toast/ToastContext';
+import { cleanInput } from '@/libraries/sanitizeInput';
 
 export default function ModalCreatePot() {
   const dispatch = usePotsDispatch();
@@ -32,17 +33,18 @@ export default function ModalCreatePot() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const parsedTarget = parseFloat(target);
-    if (isNaN(parsedTarget) || parsedTarget <= 0) {
-      setError('Please enter a valid name and positive number.');
-      return;
-    }
+    const selectedName = cleanInput(name)
     if (!name) {
       setNameError("Please enter a valid name.");
       return;
     }
     const usedNamesPots = pots.map((pot) => pot.name);
-    if (usedNamesPots.indexOf(name) !== -1) {
+    if (usedNamesPots.indexOf(selectedName) !== -1) {
       setNameError("This name is alredy used. You should edit the corresponding pot.");
+      return;
+    }
+    if (isNaN(parsedTarget) || parsedTarget <= 0) {
+      setError('Please enter a valid name and positive number.');
       return;
     }
 
@@ -51,7 +53,7 @@ export default function ModalCreatePot() {
     dispatch({
       type: 'ADD_POT',
       payload: {
-        name,
+        name: selectedName,
         theme: color,
         target: parsedTarget,
         total: 0,
@@ -72,7 +74,7 @@ export default function ModalCreatePot() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="e.g. Vacation"
-            className="border text-black rounded-lg px-4 py-2 mt-1 text-sm block w-full"
+            className="border text-black rounded-lg px-4 py-2 mt-1 text-sm block w-full hover:cursor-pointer"
           />
           {nameError && <p className="text-red-500 text-xs mt-1">{nameError}</p>}
         </label>
@@ -83,14 +85,14 @@ export default function ModalCreatePot() {
             value={target}
             onChange={(e) => setTarget(e.target.value)}
             placeholder="$ e.g. 1000"
-            className="border rounded-lg px-4 py-2 mt-1 text-sm block w-full"
+            className="border rounded-lg px-4 py-2 mt-1 text-black text-sm block w-full hover:cursor-pointer"
           />
           {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
         </label>
         <label className="text-xs text-Grey500">Theme
           <ColorSelect selected={color} setSelected={setColor} />
         </label>
-        <button type="submit" className="bg-Grey900 text-white py-2 rounded-lg mt-4">Add Pot</button>
+        <button type="submit" className="bg-Grey900 text-white py-2 rounded-lg mt-4 hover:cursor-pointer">Add Pot</button>
       </form>
     </Modal>
   );

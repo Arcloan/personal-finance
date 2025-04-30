@@ -34,11 +34,11 @@ export function CategorySelect({ selected, setSelected }: CategorySelectProps) {
   });
 
   return (
-    <div className="relative py-1">
+    <div className="relative py-1 hover:cursor-pointer">
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="border rounded-lg px-4 py-2 w-full text-left flex items-center justify-between gap-2"
+        className="border rounded-lg px-4 py-2 w-full text-left flex items-center justify-between gap-2 hover:cursor-pointer"
       >
         <div className='flex text-sm text-black'>
           {categories.find(c => c.value === selected)?.label || freeCategories[0].label}
@@ -55,7 +55,7 @@ export function CategorySelect({ selected, setSelected }: CategorySelectProps) {
                 setSelected(cat.value);
                 setOpen(false);
               }}
-              className="flex items-center justify-between gap-2 px-4 py-2 hover:bg-Grey100 w-full text-left"
+              className="flex items-center justify-between gap-2 px-4 py-2 hover:bg-Grey100 w-full text-left hover:cursor-pointer"
             >
               <div className='flex gap-2'>
                 {cat.label}

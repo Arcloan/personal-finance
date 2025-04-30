@@ -76,14 +76,14 @@ export default function ModalCreateBudget() {
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             placeholder="$ e.g. 2000"
-            className="border rounded-lg px-4 py-2 mt-1 text-sm text-black block w-full"
+            className="border rounded-lg px-4 py-2 mt-1 text-sm text-black block w-full hover:cursor-pointer"
           />
           {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
         </label>
         <label className='text-xs text-Grey500' htmlFor="">Theme
           <ColorSelect selected={selectedColor} setSelected={setSelectedColor} />
         </label>
-        <button type="submit" className="bg-Grey900 text-white py-2 rounded-lg mt-4">Add Budget</button>
+        <button type="submit" className="bg-Grey900 text-white py-2 rounded-lg mt-4 hover:cursor-pointer">Add Budget</button>
       </form>
     </Modal>
   );

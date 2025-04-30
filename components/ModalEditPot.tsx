@@ -7,6 +7,7 @@ import { useParams } from 'next/navigation';
 import { usePotsState } from '@/context/pots/PotsStateContext';
 import { usePotsDispatch } from '@/context/pots/PotsDispatchContext';
 import { useToast } from '@/context/toast/ToastContext';
+import { cleanInput } from '@/libraries/sanitizeInput';
 
 export default function ModalEditPot() {
   const { name }: { name: string } = useParams();
@@ -37,17 +38,19 @@ export default function ModalEditPot() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const parsedTarget = parseFloat(target);
-    if (isNaN(parsedTarget) || parsedTarget <= 0) {
-      setError('Please enter valid values.');
-      return;
-    }
-    if (!potName) {
+    const selectedName = cleanInput(potName);
+
+    if (!selectedName) {
       setNameError("Please enter a valid name.");
       return;
     }
     const usedNamesPots = pots.map((pot) => pot.name);
-    if (usedNamesPots.indexOf(potName) !== -1) {
+    if (usedNamesPots.indexOf(selectedName) !== -1) {
       setNameError("This name is alredy used. You should edit the corresponding pot.");
+      return;
+    }
+    if (isNaN(parsedTarget) || parsedTarget <= 0) {
+      setError('Please enter valid values.');
       return;
     }
 
@@ -58,7 +61,7 @@ export default function ModalEditPot() {
       payload: {
         name: pot!.name,
         updatedPot: {
-          name: potName,
+          name: selectedName,
           target: parsedTarget,
           theme: color,
           total: pot?.total || 0,
@@ -79,7 +82,7 @@ export default function ModalEditPot() {
             type="text"
             value={potName}
             onChange={(e) => setPotName(e.target.value)}
-            className="border text-black rounded-lg px-4 py-2 mt-1 text-sm block w-full"
+            className="border text-black rounded-lg px-4 py-2 mt-1 text-sm block w-full hover:cursor-pointer"
           />
           {nameError && <p className="text-red-500 text-xs mt-1">{nameError}</p>}
         </label>
@@ -89,7 +92,7 @@ export default function ModalEditPot() {
             type="text"
             value={target}
             onChange={(e) => setTarget(e.target.value)}
-            className="border rounded-lg px-4 py-2 mt-1 text-sm block w-full"
+            className="border rounded-lg px-4 py-2 mt-1 text-black text-sm block w-full hover:cursor-pointer"
           />
           {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
         </label>

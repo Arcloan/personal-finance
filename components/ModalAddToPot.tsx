@@ -67,17 +67,18 @@ export default function ModalAddToPot() {
         <span>Target of ${pot.target}</span>
       </div>
       <form onSubmit={handleSubmit}>
-        <label className="text-xs text-Grey500 block mb-1">Amount to Add</label>
+        <label htmlFor='amount' className="text-xs text-Grey500 block mb-1">Amount to Add</label>
         <input
           ref={inputRef}
           type="text"
+          id='amount'
           value={amountToAdd}
           onChange={(e) => setAmountToAdd(e.target.value)}
           placeholder="$ e.g. 400"
-          className="border rounded-lg px-4 py-2 text-sm text-black block w-full mb-2"
+          className="border rounded-lg px-4 py-2 text-sm text-black block w-full mb-2 hover:cursor-pointer"
         />
         {error && <p className="text-red-500 text-xs mb-2">{error}</p>}
-        <button type="submit" className="bg-Grey900 text-white py-2 rounded-lg w-full">Confirm Addition</button>
+        <button type="submit" className="bg-Grey900 text-white py-2 rounded-lg w-full hover:cursor-pointer">Confirm Addition</button>
       </form>
     </Modal>
   );

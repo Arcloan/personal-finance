@@ -37,6 +37,7 @@ export default function PotsPage() {
                 <BudgetDropdown
                   onEdit={() => router.push(`/pots/${encodeURIComponent(pot.name)}/edit`)}
                   onDelete={() => router.push(`/pots/${encodeURIComponent(pot.name)}/delete`)}
+                  name={"Pot"}
                 />
               </div>
               <div className="flex justify-between items-end mb-2">

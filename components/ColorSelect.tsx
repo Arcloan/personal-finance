@@ -42,7 +42,7 @@ export function ColorSelect({ selected, setSelected }: ColorSelectProps) {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="border rounded-lg px-4 py-2 w-full text-left flex items-center justify-between gap-2"
+        className="border rounded-lg px-4 py-2 w-full text-left flex items-center justify-between gap-2 hover:cursor-pointer"
       >
         <div className='flex gap-2 text-black'>
           <div className="w-4 h-4 rounded-full" style={{ backgroundColor: selected }} />
@@ -60,7 +60,7 @@ export function ColorSelect({ selected, setSelected }: ColorSelectProps) {
                 setSelected(color.value);
                 setOpen(false);
               }}
-              className="flex items-center justify-between gap-2 px-4 py-2 hover:bg-Grey100 w-full text-left"
+              className="flex items-center justify-between gap-2 px-4 py-2 hover:bg-Grey100 w-full text-left hover:cursor-pointer"
             >
               <div className='flex gap-2'>
                 <div className="w-4 h-4 rounded-full" style={{ backgroundColor: color.value }} />

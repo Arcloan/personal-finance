@@ -24,7 +24,7 @@ export default function BudgetsPage() {
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-Grey900">Budgets</h1>
-        <Link href={"/budgets/create"} className="bg-Grey900 text-white px-4 py-2 rounded-lg md:mt-0">
+        <Link href={"/budgets/create"} className="bg-Grey900 text-white px-4 py-2 rounded-lg md:mt-0 hover:bg-Grey500">
           + Add New Budget
         </Link>
       </div>

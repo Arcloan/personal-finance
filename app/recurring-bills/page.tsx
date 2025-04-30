@@ -115,9 +115,10 @@ export default function RecurringBillsPage() {
             <input
               type="text"
               placeholder="Search bills"
+              aria-label='Search'
               value={search}
               onChange={(e) => updateParam('search', e.target.value)}
-              className="border rounded-lg px-4 py-2 w-full md:w-1/2"
+              className="border rounded-lg px-4 py-2 w-full md:w-1/2 hover:cursor-pointer"
             />
             <SelectWithImage imageUrl="/assets/images/icon-sort-mobile.svg" type="sort" options={[
                         { value: 'newest', label: 'Newest' },
@@ -128,12 +129,12 @@ export default function RecurringBillsPage() {
                         { value: 'lowest', label: 'Lowest' },
                         ]} updateParam={updateParam}></SelectWithImage>
             <div className="ml-auto flex gap-2 items-center max-md:hidden">
-              <p className="text-Grey500">Sort by</p>
+              <label htmlFor='sort' className="text-Grey500">Sort by</label>
               <select
                 id="sort"
                 value={sort}
                 onChange={(e) => updateParam('sort', e.target.value)}
-                className="border rounded-lg px-4 py-2"
+                className="border rounded-lg px-4 py-2 hover:cursor-pointer"
               >
                 {sortOptions.map((option) => (
                   <option key={option.value} value={option.value}>{option.label}</option>

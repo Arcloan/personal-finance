@@ -29,13 +29,13 @@ export default function ModalDeletePot() {
       </p>
       <button
         onClick={handleDelete}
-        className="bg-Red text-white w-full text-sm py-2 rounded-lg mb-2"
+        className="bg-Red text-white w-full text-sm py-2 rounded-lg mb-2 hover:cursor-pointer"
       >
         Yes, Confirm Deletion
       </button>
       <button
         onClick={() => router.back()}
-        className="w-full py-2 text-sm text-Grey500"
+        className="w-full py-2 text-sm text-Grey500 hover:cursor-pointer"
       >
         No, Go Back
       </button>

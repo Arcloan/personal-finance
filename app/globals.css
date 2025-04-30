@@ -38,3 +38,7 @@
 @utility filter-green {
   filter: invert(40%) sepia(29%) saturate(798%) hue-rotate(128deg) brightness(96%) contrast(96%);
 }
+
+@utility filter-white {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(132deg) brightness(103%) contrast(103%);
+}

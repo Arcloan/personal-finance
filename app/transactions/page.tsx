@@ -80,7 +80,8 @@ export default function TransactionsPage() {
           placeholder="Search transaction"
           value={search}
           onChange={(e) => updateParam('search', e.target.value)}
-          className="border rounded-lg px-4 py-2 w-full md:w-1/3"
+          className="border rounded-lg px-4 py-2 w-full md:w-1/3 hover:cursor-pointer"
+          aria-label='Search'
         />
         <div className='md:hidden flex gap-6'>
           <SelectWithImage imageUrl="/assets/images/icon-sort-mobile.svg" type="sort" options={[
@@ -108,12 +109,12 @@ export default function TransactionsPage() {
         </div>
         <div className='ml-auto flex gap-4 max-md:hidden'>
             <div className='flex gap-2 items-center'>
-                <p className='text-Grey500 max-md:hidden'>Sort by</p>
+                <label htmlFor='sort' className='text-Grey500 max-md:hidden'>Sort by</label>
                 <select
                 id='sort'
                 value={sort}
                 onChange={(e) => updateParam('sort', e.target.value)}
-                className="border rounded-lg px-4 py-2"
+                className="border rounded-lg px-4 py-2 hover:cursor-pointer"
                 >
                 {sortOptions.map((option) => (
                 <option key={option.value} value={option.value}>{option.label}</option>
@@ -121,12 +122,12 @@ export default function TransactionsPage() {
                 </select>
             </div>
             <div className='flex gap-2 items-center'>
-                <p className='text-Grey500 max-md:hidden'>Category</p>
+                <label htmlFor='filter' className='text-Grey500 max-md:hidden'>Category</label>
                 <select
                 id='filter'
                 value={filter}
                 onChange={(e) => updateParam('filter', e.target.value)}
-                className="border rounded-lg px-4 py-2"
+                className="border rounded-lg px-4 py-2 hover:cursor-pointer"
                 >
                 <option value="all">All Transactions</option>
                 {categories.map((cat) => (
@@ -183,9 +184,9 @@ export default function TransactionsPage() {
         <button
           disabled={page <= 1}
           onClick={() => updateParam('page', (page - 1).toString())}
-          className="px-3 py-1 border rounded disabled:opacity-50 flex gap-4"
+          className="group px-3 py-1 border rounded disabled:opacity-50 flex gap-4 hover:cursor-pointer hover:text-white hover:bg-Grey500"
         >
-            <img src="/assets/images/icon-caret-left.svg" alt="" />
+            <img src="/assets/images/icon-caret-left.svg" alt="" className='group-hover:filter-white' />
           Prev
         </button>
         <div className='m-auto flex gap-2'>
@@ -193,7 +194,7 @@ export default function TransactionsPage() {
           <button
             key={idx}
             onClick={() => updateParam('page', (idx + 1).toString())}
-            className={`px-3 py-1 border rounded ${page === idx + 1 ? 'bg-Grey900 text-white' : ''}`}
+            className={`px-3 py-1 border rounded ${page === idx + 1 ? 'bg-Grey900 text-white' : ''} hover:cursor-pointer hover:bg-Grey500 hover:text-white`}
           >
             {idx + 1}
           </button>
@@ -202,10 +203,10 @@ export default function TransactionsPage() {
         <button
           disabled={page >= totalPages}
           onClick={() => updateParam('page', (page + 1).toString())}
-          className="px-3 py-1 border rounded disabled:opacity-50 flex gap-4"
+          className="group px-3 py-1 border rounded disabled:opacity-50 flex gap-4 hover:cursor-pointer hover:text-white hover:bg-Grey500"
         >
           Next
-          <img src="/assets/images/icon-caret-right.svg" alt="" />
+          <img src="/assets/images/icon-caret-right.svg" alt="" className='group-hover:filter-white' />
         </button>
       </div>
     </div>

@@ -47,7 +47,7 @@ export default function SidebarDesktop() {
       <div className={`mt-auto pt-6 pb-8 ${isMinimized ? "justify-self-center" : "justify-self-start"} `}>
         <button
           onClick={toggleSidebar}
-          className="flex items-center gap-2 text-grey-300 pl-4 hover:text-white text-sm"
+          className="flex items-center gap-2 text-grey-300 pl-4 hover:text-white text-sm cursor-pointer"
         >
         {isMinimized ? <img src={"/assets/images/icon-minimize-menu.svg"} className='rotate-y-180' /> : <p className={`flex gap-2 ${isMinimized ? "justify-self-center" : "justify-self-start"}`}><img src="/assets/images/icon-minimize-menu.svg" alt="" /> Minimize Menu</p>}
         </button>

@@ -69,7 +69,7 @@ export default function ModalEditBudget() {
             value={amount}
             onChange={(e) => setAmount((e.target.value))}
             placeholder="$ e.g. 2000"
-            className="border rounded-lg px-4 py-2 mt-1 text-sm text-black block w-full"
+            className="border rounded-lg px-4 py-2 mt-1 text-sm text-black block w-full hover:cursor-pointer"
           />
           {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
         </label>

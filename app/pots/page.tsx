@@ -13,7 +13,7 @@ export default function PotsPage() {
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-Grey900">Pots</h1>
-        <Link href="/pots/create" className="bg-Grey900 text-white px-4 py-2 rounded-lg">
+        <Link href="/pots/create" className="bg-Grey900 text-white px-4 py-2 rounded-lg hover:bg-Grey500">
           + Add New Pot
         </Link>
       </div>
@@ -54,11 +54,11 @@ export default function PotsPage() {
               </div>
               <div className="flex gap-4">
                 <button onClick={() => router.push(`/pots/${encodeURIComponent(pot.name)}/add`)}
-                className="flex-1 py-2 rounded-lg bg-Grey100 text-Grey900 font-medium cursor-pointer">
+                className="flex-1 py-2 rounded-lg bg-Grey100 text-Grey900 font-medium cursor-pointer border-2 border-transparent hover:bg-white hover:border-black">
                   + Add Money
                 </button>
                 <button onClick={() => router.push(`/pots/${encodeURIComponent(pot.name)}/withdraw`)}
-                className="flex-1 py-2 rounded-lg bg-Grey100 text-Grey900 font-medium cursor-pointer">
+                className="flex-1 py-2 rounded-lg bg-Grey100 text-Grey900 font-medium cursor-pointer border-2 border-transparent hover:bg-white hover:border-black">
                   Withdraw
                 </button>
               </div>
