@@ -102,7 +102,7 @@ export default function RecurringBillsPage() {
               </div>
               <div className="flex justify-between text-Red">
                 <p>Due Soon</p>
-                <p className="font-semibold">{`${recurringTransaction.filter(isDueSoon).length}($${transactions.reduce(calculateDueSoon, 0).toFixed(2)})`}</p>
+                <p className="font-semibold">{`${recurringTransaction.filter(isDueSoon).length}($${recurringTransaction.reduce(calculateDueSoon, 0).toFixed(2)})`}</p>
               </div>
             </div>
           </div>

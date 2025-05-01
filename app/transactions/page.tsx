@@ -73,7 +73,7 @@ export default function TransactionsPage() {
     <div className="p-6">
       <h1 className="text-2xl font-bold text-Grey900 mb-6">Transactions</h1>
 
-      <div className="flex flex-row max-md:gap-24 items-center gap-4 mb-6">
+      <div className="flex flex-row max-md:gap-18 items-center gap-4 mb-6">
         <input
           type="text"
           placeholder="Search transaction"
@@ -82,7 +82,7 @@ export default function TransactionsPage() {
           className="border rounded-lg px-4 py-2 w-full md:w-1/3 hover:cursor-pointer"
           aria-label='Search'
         />
-        <div className='md:hidden flex gap-6'>
+        <div className='md:hidden flex gap-2'>
           <SelectWithImage imageUrl="/assets/images/icon-sort-mobile.svg" type="sort" options={[
             { value: 'newest', label: 'Newest' },
             { value: 'oldest', label: 'Oldest' },

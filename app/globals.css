@@ -1,10 +1,5 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: PublicSans;
-  src: url("/assets/fonts/PublicSans-VariableFont_wght.ttf");
-}
-
 @theme {
   --color-Beige500: #98908B;
   --color-Beige100: #F8F4F0;

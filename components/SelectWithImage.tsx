@@ -39,7 +39,7 @@ export default function SelectWithImage({imageUrl, updateParam, type, options} :
         src={imageUrl}
         alt="Apri Selezione"
         onClick={handleImageClick}
-        className="cursor-pointer block size-12"
+        className="cursor-pointer block max-w-none"
       />
 
       {isOpen && (
