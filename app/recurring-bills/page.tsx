@@ -111,7 +111,7 @@ export default function RecurringBillsPage() {
         
         <div className="flex-1 bg-white rounded-lg shadow overflow-x-auto p-4">
           
-          <div className="flex gap-4 max-md:gap-8 mb-4">
+          <div className="flex gap-4 items-center max-md:gap-8 mb-4">
             <input
               type="text"
               placeholder="Search bills"
