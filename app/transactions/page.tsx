@@ -181,7 +181,7 @@ export default function TransactionsPage() {
         <button
           disabled={page <= 1}
           onClick={() => updateParam('page', (page - 1).toString())}
-          className="group px-3 py-1 border rounded disabled:opacity-50 flex gap-4 hover:cursor-pointer hover:text-white hover:bg-Grey500"
+          className="group px-3 py-1 border rounded disabled:opacity-50 flex items-center gap-4 hover:cursor-pointer hover:text-white hover:bg-Grey500"
         >
             <img src="/assets/images/icon-caret-left.svg" alt="previous" className='group-hover:filter-white' />
           Prev
@@ -200,7 +200,7 @@ export default function TransactionsPage() {
         <button
           disabled={page >= totalPages}
           onClick={() => updateParam('page', (page + 1).toString())}
-          className="group px-3 py-1 border rounded disabled:opacity-50 flex gap-4 hover:cursor-pointer hover:text-white hover:bg-Grey500"
+          className="group px-3 py-1 border rounded disabled:opacity-50 flex items-center gap-4 hover:cursor-pointer hover:text-white hover:bg-Grey500"
         >
           Next
           <img src="/assets/images/icon-caret-right.svg" alt="next" className='group-hover:filter-white' />
