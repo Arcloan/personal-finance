@@ -20,7 +20,7 @@ export default function Home() {
           <BalanceCard label="Expenses" amount={data.balance.expenses} />
         </div>
 
-        <div className='xl:grid max-xl:flex max-xl:flex-col max-xl:gap-y-6 xl:grid-cols-[57.5%_40%] xl:gap-x-6 xl:col-span-5 xl:gap-y-6 grid-rows-[218px_168px_327px]'>
+        <div className='xl:grid max-xl:flex max-xl:flex-col max-xl:gap-y-6 xl:grid-cols-[1fr_40%] xl:gap-x-6 xl:col-span-5 xl:gap-y-6 grid-rows-[218px_168px_327px]'>
           
           <PotsSection />
 
